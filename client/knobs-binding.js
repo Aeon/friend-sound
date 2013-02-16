@@ -1,4 +1,5 @@
-/*
+Template.knobs.rendered = function(){
+
 var createKnobCSS = function(knob, id) {
   var $input     = $(knob.element),
       $container = $('<div class="container '+ id + '">'),
@@ -37,26 +38,19 @@ var drawKnobCSS = function(knob, indicator) {
   });
 }
 
+var positionKnob = new Knob(document.getElementById('position'),
+  function(knob, indicator) {
+    drawKnobCSS(knob, indicator);
+  }
+);
+createKnobCSS(positionKnob, 'position');
 
-Template.knobs.rendered(function(){
-  var positionKnob = new Knob(document.getElementById('position'),
-    function(knob, indicator) {
-      drawKnobCSS(knob, indicator);
-    }
-  );
-  createKnobCSS(positionKnob, 'position');
-})
-
-
-Template.knobs.rendered(function(){
 var rotateKnob = new Knob(document.getElementById('rotate'),
   function(knob, indicator) {
     drawKnobCSS(knob, indicator);
   }
 );
-
-  createKnobCSS(rotateKnob, 'rotate');
-})
+createKnobCSS(rotateKnob, 'rotate');
 
 var positionRotateKnob = new Knob(document.getElementById('position-rotate'),
   function(knob, indicator) {
@@ -64,4 +58,5 @@ var positionRotateKnob = new Knob(document.getElementById('position-rotate'),
   }
 );
 createKnobCSS(positionRotateKnob, 'position-rotate');
-*/
+
+}
