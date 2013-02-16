@@ -41,3 +41,18 @@ hasSongPlayed = (song) ->
 ###
 Playlist = new Meteor.Collection 'playlist'
 
+###
+# Players:
+#
+# id
+# name
+# idle
+###
+Players = new Meteor.Collection "players";
+
+###
+# Smurfs
+#
+# names for new players
+###
+smurfs = ['Papa','Brainy','Hefty','Handy','Jokey','Smurfette','Nat','Slouchy','Snappy','Grouchy','Greedy','Dreamy','Wooly','Nobody','Somebody','Vanity','Clumsy','Lazy','Poet','Farmer','Tailor','Harmony','Painter','Tracker','Miner','Weakling','Scaredy','Editor','Reporter','Flighty','Sweepy','Weepy','Sickly','Dabbler','Timber','Sloppy','Nosey','Timid','Tuffy','Pushover','Marco','Medic','Double','Golfer','Barber']
