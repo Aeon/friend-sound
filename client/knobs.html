@@ -1,0 +1,39 @@
+<body>
+  {{> knobs}}
+</body>
+
+<template name="knobs">
+  <input id="position"
+         name="position"
+         type="range"
+         value="50"
+         min="0" max="100"
+         data-indicator-auto-position="true"
+         data-indicator-radius="22"
+         data-gesture-spin-enabled="false"
+         data-gesture-slidex-enabled="false"
+         data-gesture-slidey-enabled="false"
+          />
+
+  <input id="rotate"
+         name="rotate"
+         type="range"
+         value="50"
+         min="0" max="100"
+         data-angle-start="-400"
+         data-angle-end="360"
+         data-indicator-auto-rotate="true"
+          />
+
+  <input id="position-rotate"
+         name="rotate"
+         type="range"
+         value="50"
+         min="0" max="100"
+         data-angle-start="-400"
+         data-angle-end="360"
+         data-indicator-auto-position="true"
+         data-indicator-auto-rotate="true"
+         data-indicator-radius="22"
+          />
+</template>
