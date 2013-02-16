@@ -10,6 +10,15 @@ Template.hello.events({
   }
 });
 
+
+Template.audioplayer.artist = function () {
+  return "Tricky";
+};
+
+Template.audioplayer.title = function () {
+  return "Black Steel";
+};
+
 var player = function () {
   return Players.findOne(Session.get('player_id'));
 };
