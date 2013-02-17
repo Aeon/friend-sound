@@ -63,6 +63,11 @@ getEchonestParams = () ->
     max_energy: Math.min(values.energy + 0.1, 1)
     bucket: ['audio_summary', 'song_hotttnesss', 'artist_familiarity']
     results: 40
+  if params.max_loudness > 0
+    params.max_loudness = 0
+  if params.song_min_hotttnesss > 0.5 
+    params.song_min_hotttnesss = 0.5
+  params
 
 makeQueryString = (params) ->
   qs = ''
