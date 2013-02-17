@@ -48,7 +48,7 @@ Playlist = new Meteor.Collection 'playlist'
 # name
 # idle
 ###
-Players = new Meteor.Collection "players";
+Players = new Meteor.Collection "players"
 
 ###
 # Smurfs

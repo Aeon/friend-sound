@@ -1,22 +1,20 @@
-Template.hello.greeting = function () {
-  return "Welcome to friend-sound !";
-};
-
-Template.hello.events({
-  'click input' : function () {
-    // template data, if any, is available in 'this'
-    if (typeof console !== 'undefined')
-      console.log("You pressed the button");
-  }
-});
-
-
 Template.audioplayer.artist = function () {
   return "Tricky";
 };
 
 Template.audioplayer.title = function () {
   return "Black Steel";
+};
+
+Template.playlist.songs = function () {
+  return Playlist.find();
+};
+
+Template.players.show = true;
+
+Template.players.players = function () {
+  // return Players.find({_id: {$ne: Session.get('player_id')}});
+  return Players.find();
 };
 
 var player = function () {
