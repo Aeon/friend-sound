@@ -11,10 +11,9 @@
 
 <template name="playlist">
 <div>
-  {{current_song}}
   <div id="now-playing">
     {{#if current_song}}
-      {{current_song.name}} by {{current_song.artist_name}}
+      {{current_song.title}} by {{current_song.artist_name}}
     {{/if}}
   </div>
   <div id="playlist">
@@ -28,7 +27,7 @@
 <template name="audioplayer">
   <div id="tomahawk-player">
     {{#if current_song}}
-      <iframe src="http://toma.hk/embed.php?artist={{current_song.artist_name}}&title={{current_song.name}}&autoplay=false&disabledResolvers=" width="200" scrolling="no" height="200" frameborder="0" allowtransparency="true" ></iframe>
+      <iframe src="http://toma.hk/embed.php?artist={{current_song.artist_name}}&title={{current_song.title}}&autoplay=false&disabledResolvers=" width="200" scrolling="no" height="200" frameborder="0" allowtransparency="true" ></iframe>
     {{/if}}
   </div>
 </template>
