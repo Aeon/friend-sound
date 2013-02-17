@@ -1,4 +1,4 @@
-knobs = {};
+knobs = {}
 
 createKnobCSS = (knob,id)->
   $input = $(knob.element)
@@ -15,9 +15,9 @@ createKnobCSS = (knob,id)->
 
   #center knob in container
   $body.css
-    "margin-top": -($body.outerHeight()/2)
+    "margin-top": $body.outerHeight()/2
     "margin-left": -($body.outerWidth()/2)
-  setupKnob(knob, $container[0]);
+  setupKnob(knob, $container[0])
 
 drawKnobCSS = (knob, indicator)->
   $indicator = $(knob.element).siblings('.ui-indicator')
@@ -42,22 +42,14 @@ updateValue = (category, value)->
 updateValue.knobTimeout = null
 
 Template.knobs.rendered = ->
-  knobs.hotttness = new Knob document.getElementById('position'), (knob, indicator)->
+  knobs.hotttness = new Knob document.getElementById('position-rotate'), (knob, indicator)->
     drawKnobCSS(knob, indicator)
     updateValue "hotttness", knob.element.value
-  createKnobCSS knobs.hotttness, 'position'
+  createKnobCSS knobs.hotttness, 'position-rotate'
   
-  rotateKnob = new Knob document.getElementById('rotate'), (knob, indicator)->
-    drawKnobCSS(knob, indicator)
-  createKnobCSS rotateKnob, 'rotate'
-
-  positionRotateKnob = new Knob document.getElementById('position-rotate'), (knob, indicator)->
-    drawKnobCSS(knob, indicator)
-  createKnobCSS positionRotateKnob, 'position-rotate'
-
 Meteor.startup ->
   Meteor.autorun ->
     for knob in Knobs.find().fetch()
       console.log "updating knob", knob.category, knob.value
       if knobs[knob.category] and knobs[knob.category].val() != knob.value
-        knobs[knob.category].val(knob.value) 
+        knobs[knob.category].val(knob.value)
