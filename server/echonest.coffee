@@ -46,20 +46,21 @@ getValue = (category) ->
 
 getEchonestParams = () ->
   values = getKnobValues()
+  console.log "Calculating with values", values
   params =
     api_key: 'BOLND4XS0ULGFU0YV'
-    min_tempo: Math.min(values.tempo - 20, 0)
-    max_tempo: Math.max(values.tempo + 20, 300)
-    min_loudness: Math.min(values.loudness - 20, -100)
-    max_loudness: Math.max(values.loudness + 20, 100)
-    artist_min_familiarity: Math.min(values.familiarity - 0.1, 0)
-    artist_max_familiarity: Math.max(values.familiarity + 0.1, 1)
-    song_min_hotttnesss: Math.min(values.hotttnesss - 0.1, 0)
-    song_max_hotttnesss: Math.max(values.hotttnesss + 0.1, 1)
-    min_danceability: Math.min(values.danceability - 0.1, 0)
-    max_danceability: Math.max(values.danceability + 0.1, 1)
-    min_energy: Math.min(values.energy - 0.1, 0)
-    max_energy: Math.max(values.energy + 0.1, 1)
+    min_tempo: Math.max(values.tempo - 20, 0)
+    max_tempo: Math.min(values.tempo + 20, 300)
+    min_loudness: Math.max(values.loudness - 20, -100)
+    max_loudness: Math.min(values.loudness + 20, 100)
+    artist_min_familiarity: Math.max(values.familiarity - 0.1, 0)
+    artist_max_familiarity: Math.min(values.familiarity + 0.1, 1)
+    song_min_hotttnesss: Math.max(values.hotttnesss - 0.1, 0)
+    song_max_hotttnesss: Math.min(values.hotttnesss + 0.1, 1)
+    min_danceability: Math.max(values.danceability - 0.1, 0)
+    max_danceability: Math.min(values.danceability + 0.1, 1)
+    min_energy: Math.max(values.energy - 0.1, 0)
+    max_energy: Math.min(values.energy + 0.1, 1)
     bucket: ['audio_summary', 'song_hotttnesss', 'artist_familiarity']
     results: 40
 
@@ -99,7 +100,8 @@ Meteor.startup ->
           console.error error, result
         else
           #console.log "Data:", result.data
-          #console.log "Songs:", result.data.response.songs
+          console.log "Songs:", result.data.response.songs
+          Playlist.remove {}
           for s in result.data.response.songs
             song =
               song_id : s.id
