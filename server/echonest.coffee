@@ -39,21 +39,30 @@ Response:
 
 SEARCH_URL="http://developer.echonest.com/api/v4/song/search?"
 
-getEchonestParams = (doc) ->
+getValue = (category) ->
+  Knobs.findOne(category: category).value
+
+getEchonestParams = () ->
+  tempo = getValue 'tempo'
+  loudness = getValue 'loudness'
+  familiarity = getValue 'familiarity'
+  hotttnesss = getValue 'hotttnesss'
+  danceability = getValue 'danceability'
+  energy = getValue 'energy'
   params =
     api_key: 'BOLND4XS0ULGFU0YV'
-    min_tempo: doc.tempo - 20
-    max_tempo: doc.tempo + 20
-    min_loudness: doc.loudness - 10
-    max_loudness: doc.loudness + 10
-    artist_min_familiarity: doc.familiarity - 0.1
-    artist_max_familiarity: doc.familiarity + 0.1
-    song_min_hotttnesss: doc.hotttnesss - 0.1
-    song_max_hotttnesss: doc.hotttnesss + 0.1
-    min_danceability: doc.danceability - 0.1
-    max_danceability: doc.danceability + 0.1
-    min_energy: doc.energy - 0.1
-    max_energy: doc.energy + 0.1
+    min_tempo: tempo - 20
+    max_tempo: tempo + 20
+    min_loudness: loudness - 10
+    max_loudness: loudness + 10
+    artist_min_familiarity: familiarity - 0.1
+    artist_max_familiarity: familiarity + 0.1
+    song_min_hotttnesss: hotttnesss - 0.1
+    song_max_hotttnesss: hotttnesss + 0.1
+    min_danceability: danceability - 0.1
+    max_danceability: danceability + 0.1
+    min_energy: energy - 0.1
+    max_energy: energy + 0.1
     bucket: ['audio_summary', 'song_hotttnesss', 'artist_familiarity']
     results: 40
 
@@ -62,8 +71,8 @@ makeQueryString = (params) ->
   for name, values of params
     unless values instanceof Array
       values = [values]
-      for v in values
-        qs += "&#{name}=#{v}"
+    for v in values
+      qs += "&#{name}=#{v}"
   return qs
 
 Meteor.startup ->
@@ -72,8 +81,9 @@ Meteor.startup ->
   Knobs.find({}).observe
     changed: (newDoc, index, oldDoc) ->
       console.log "Doc changed:", newDoc
-      params = getEchonestParams newDoc
+      params = getEchonestParams()
       qs = makeQueryString params
+      console.log "Query", qs
       Meteor.http.get SEARCH_URL, query: qs, (error, result) ->
         if error
           console.error error, result
