@@ -51,10 +51,9 @@ Template.knobs.events =
     #updateValue "hotttnesss", knob.element.value
   #createKnobCSS knobs.hotttness, 'position-rotate'
   
-#Meteor.startup ->
-  #Meteor.autorun ->
-    #for knob in Knobs.find().fetch()
-      #console.log "updating knob", knob.category, knob.value
-      #if knobs[knob.category] and knobs[knob.category].val() != knob.value
-        #console.log "Not setting value"
-        ##knobs[knob.category].val(knob.value)
+Meteor.startup ->
+  Meteor.autorun ->
+    for knob in Knobs.find().fetch()
+      if $("##{knob.category}") and $("##{knob.category}").val() != ""+knob.value
+        console.log "Not setting value", knob.category, knob.value, $("##{knob.category}").val(), knob.value == $("##{knob.category}").val()
+#        knobs[knob.category].val(knob.value)
