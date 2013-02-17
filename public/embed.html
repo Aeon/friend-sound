@@ -1,0 +1,135 @@
+<html>
+<head>
+    <title>Toma.hk player</title>
+
+    <link href='http://toma.hk/css/style.css?v=1' media='all' rel='stylesheet'/>
+
+    <link href='http://toma.hk/css/embed.css?v=1' media='all' rel='stylesheet'/>
+
+    <script type="text/javascript" src="/packages/jquery/jquery.js"></script>
+    <script src="http://toma.hk/js/script.js.php" type="text/javascript"></script>
+
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# tomahawkplayer: http://ogp.me/ns/fb/tomahawkplayer#">
+    <meta property="fb:app_id"      content="195872347126570" /> 
+    <meta property="og:type"        content="tomahawkplayer:song" /> 
+    <meta property="og:url"         content="http://toma.hk/embed.php?artist=Radiohead&title=Karma%20Police&autoplay=true&disabledResolvers=" /> 
+    <meta property="og:title"       content="Karma Police by Radiohead" /> 
+    <meta property="og:description" content="Karma Police by Radiohead" /> 
+    <meta property="og:image"       content="http://ws.audioscrobbler.com/2.0/?method=artist.imageredirect&artist=Radiohead&autocorrect=1&size=largesquare&api_key=a81521f42db5b48e3a474f30d1c9814d" /> 
+    <meta property="og:audio"         content="http://toma.hk/embed.php?artist=Radiohead&title=Karma%20Police&autoplay=true&disabledResolvers=" /> 
+  <script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+    <script type="text/javascript" src="http://toma.hk/js/Tomahawk.js"></script>
+    <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+
+
+    <script type="text/javascript" src="http://toma.hk/js/classes/Album.js"></script>
+     <script type="text/javascript" src="http://toma.hk/js/classes/Artist.js"></script>
+     <script type="text/javascript" src="http://toma.hk/js/classes/Playlist.js"></script>
+     <script type="text/javascript" src="http://toma.hk/js/classes/Track.js"></script>
+
+
+    <script type="text/javascript" src="http://toma.hk/js/EXAudio/ex-audio.js"></script>
+    <script type="text/javascript" src="http://toma.hk/js/common.js"></script>
+    <script src="http://toma.hk/js/bootstrap/bootstrap-tooltip.js"></script>
+
+    <script type="text/javascript" src="http://toma.hk/playdarjs/playdar_compressed.js"></script>
+
+<script>
+var autoplay = false;
+autoplay=true
+</script>
+
+
+    <script type="text/javascript" src="http://toma.hk/js/Tomahk.js"></script>
+
+    <!-- resolvers -->
+    <script type="text/javascript" src="http://toma.hk/js/resolvers/exfm/content/contents/code/exfm.js"></script>
+    <script type="text/javascript" src="http://toma.hk/js/resolvers/soundcloud/content/contents/code/soundcloud.js"></script>
+    <script type="text/javascript" src="http://toma.hk/js/resolvers/lastfm/content/contents/code/lastfm.js"></script>
+
+    <script type="text/javascript" src="http://toma.hk/js/SpotifyMetadataResolver/spotifymetadata.js"></script>
+
+    <script type="text/javascript" src="http://toma.hk/js/YoutubeResolver/youtube.js"></script>
+
+    <script type="text/javascript" src="http://toma.hk/js/resolvers.js"></script>
+
+    <script type="text/javascript" src="/player.js"></script>
+
+</head>
+
+<body style="background:#000">
+    
+    <div id="cover" class='cover'>
+        <style>
+#singleResultsList {
+    display:block;
+    position:fixed;
+    width:auto;
+    left:4px;
+    height:auto;
+    overflow:hidden;
+    right:75px;
+    top:0px;
+    height:45px;
+    white-space:nowrap;
+}
+
+@media (max-width:300px) {
+
+  #singleResultsList, #singleresultslist a span.resolver-icon img, #singleresultslist a span.resolver-icon, #singleresultslist a, #singleresultslist li {
+    height:25px;
+  }
+
+}
+
+@media (max-width:150px) {
+
+  #singleResultsList, #singleresultslist a span.resolver-icon img, #singleresultslist a span.resolver-icon, #singleresultslist a, #singleresultslist li {
+    height:18px;
+  }
+
+}
+
+        </style>
+
+        <div id="progress_bar"></div>
+        <a class='has-context' contextmenu="covermenu">
+
+            <menu type="context" class="contextmenu" id="covermenu" >
+              
+              <menuitem label="Next resolver" onclick="playNextResolver()"></menuitem>
+              <menuitem label="Play in toma.hk" onclick="window.open('http://toma.hk/?artist=Radiohead&title=Karma+Police');return false;"></menuitem>
+              <menuitem label="More info" onclick="window.open('http://tomahawk-player.org');return false;"></menuitem>
+                
+            </menu>
+
+            <img width=200 height=200 src="http://ws.audioscrobbler.com/2.0/?method=artist.imageredirect&artist=Radiohead&autocorrect=1&size=largesquare&api_key=a81521f42db5b48e3a474f30d1c9814d"></a></div>
+    <div id="details" rel="tooltip" title="Karma Police<br/>Radiohead">
+        <h1 title="Karma Police"><a href='http://toma.hk/?artist=Radiohead&title=Karma Police' target="_BLANK">Karma Police</a></h1>
+        <h2 title="Radiohead"><a href='http://toma.hk/artist/Radiohead' target="_blank">Radiohead</a></h2>
+    </div>
+   
+                <ul id="singleResultsList"></ul>
+
+    <div id='fb-root'></div>
+
+
+        <script type="text/javascript" src="http://toma.hk/js/results.js" ></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                qid = Tomahk.search({
+                    artist: 'Radiohead',
+                    album: '',
+                    title: 'Karma Police'
+                });
+            })
+
+            Tomahk.setProtocolUrl('tomahawk://open/track/?artist=Radiohead&title=Karma+Police');
+            Tomahk.currentUrl = 'http://toma.hk/embed.php?artist=Radiohead&title=Karma%20Police&autoplay=true&disabledResolvers=';
+        
+            
+        </script>
+
+    </body>
+</html>
