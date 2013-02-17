@@ -45,26 +45,21 @@ getValue = (category) ->
   Knobs.findOne(category: category).value
 
 getEchonestParams = () ->
-  tempo = getValue 'tempo'
-  loudness = getValue 'loudness'
-  familiarity = getValue 'familiarity'
-  hotttnesss = getValue 'hotttnesss'
-  danceability = getValue 'danceability'
-  energy = getValue 'energy'
+  values = getKnobValues()
   params =
     api_key: 'BOLND4XS0ULGFU0YV'
-    min_tempo: tempo - 30
-    max_tempo: tempo + 30
-    min_loudness: loudness - 20
-    max_loudness: loudness + 20
-    artist_min_familiarity: familiarity - 0.1
-    artist_max_familiarity: familiarity + 0.1
-    song_min_hotttnesss: hotttnesss - 0.1
-    song_max_hotttnesss: hotttnesss + 0.1
-    min_danceability: danceability - 0.1
-    max_danceability: danceability + 0.1
-    min_energy: energy - 0.1
-    max_energy: energy + 0.1
+    min_tempo: Math.min(values.tempo - 20, 0)
+    max_tempo: Math.max(values.tempo + 20, 300)
+    min_loudness: Math.min(values.loudness - 20, -100)
+    max_loudness: Math.max(values.loudness + 20, 100)
+    artist_min_familiarity: Math.min(values.familiarity - 0.1, 0)
+    artist_max_familiarity: Math.max(values.familiarity + 0.1, 1)
+    song_min_hotttnesss: Math.min(values.hotttnesss - 0.1, 0)
+    song_max_hotttnesss: Math.max(values.hotttnesss + 0.1, 1)
+    min_danceability: Math.min(values.danceability - 0.1, 0)
+    max_danceability: Math.max(values.danceability + 0.1, 1)
+    min_energy: Math.min(values.energy - 0.1, 0)
+    max_energy: Math.max(values.energy + 0.1, 1)
     bucket: ['audio_summary', 'song_hotttnesss', 'artist_familiarity']
     results: 40
 
@@ -76,6 +71,19 @@ makeQueryString = (params) ->
     for v in values
       qs += "&#{name}=#{v}"
   return qs
+
+getKnobValues = ->
+  values =
+    tempo : getValue 'tempo'
+    loudness : getValue 'loudness'
+    familiarity : getValue 'familiarity'
+    hotttnesss : getValue 'hotttnesss'
+    danceability : getValue 'danceability'
+    energy : getValue 'energy'
+    
+
+  
+
 
 Meteor.startup ->
   
@@ -90,14 +98,15 @@ Meteor.startup ->
         if error
           console.error error, result
         else
-          console.log "Data:", result.data
-          console.log "Songs:", result.data.response.songs
+          #console.log "Data:", result.data
+          #console.log "Songs:", result.data.response.songs
           for s in result.data.response.songs
             song =
               song_id : s.id
               title : s.title
               artist_id : s.artist_id
               artist_name : s.artist_name
+              duration : s.audio_summary.duration
               tempo : s.audio_summary.tempo
               loudness : s.audio_summary.loudness
               danceability : s.audio_summary.tempo

@@ -44,7 +44,7 @@ updateValue.knobTimeout = null
 Template.knobs.rendered = ->
   knobs.hotttness = new Knob document.getElementById('position-rotate'), (knob, indicator)->
     drawKnobCSS(knob, indicator)
-    updateValue "hotttness", knob.element.value
+    updateValue "hotttnesss", knob.element.value
   createKnobCSS knobs.hotttness, 'position-rotate'
   
 Meteor.startup ->
@@ -52,4 +52,5 @@ Meteor.startup ->
     for knob in Knobs.find().fetch()
       console.log "updating knob", knob.category, knob.value
       if knobs[knob.category] and knobs[knob.category].val() != knob.value
-        knobs[knob.category].val(knob.value)
+        console.log "Not setting value"
+        #knobs[knob.category].val(knob.value)
