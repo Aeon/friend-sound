@@ -9,14 +9,6 @@
     <script type="text/javascript" src="/packages/jquery/jquery.js"></script>
     <script src="http://toma.hk/js/script.js.php" type="text/javascript"></script>
 
-    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# tomahawkplayer: http://ogp.me/ns/fb/tomahawkplayer#">
-    <meta property="fb:app_id"      content="195872347126570" /> 
-    <meta property="og:type"        content="tomahawkplayer:song" /> 
-    <meta property="og:url"         content="http://toma.hk/embed.php?artist=Radiohead&title=Karma%20Police&autoplay=true&disabledResolvers=" /> 
-    <meta property="og:title"       content="Karma Police by Radiohead" /> 
-    <meta property="og:description" content="Karma Police by Radiohead" /> 
-    <meta property="og:image"       content="http://ws.audioscrobbler.com/2.0/?method=artist.imageredirect&artist=Radiohead&autocorrect=1&size=largesquare&api_key=a81521f42db5b48e3a474f30d1c9814d" /> 
-    <meta property="og:audio"         content="http://toma.hk/embed.php?artist=Radiohead&title=Karma%20Police&autoplay=true&disabledResolvers=" /> 
   <script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
     <script type="text/javascript" src="http://toma.hk/js/Tomahawk.js"></script>
     <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
@@ -33,12 +25,6 @@
     <script src="http://toma.hk/js/bootstrap/bootstrap-tooltip.js"></script>
 
     <script type="text/javascript" src="http://toma.hk/playdarjs/playdar_compressed.js"></script>
-
-<script>
-var autoplay = false;
-autoplay=true
-</script>
-
 
     <script type="text/javascript" src="http://toma.hk/js/Tomahk.js"></script>
 
@@ -104,9 +90,9 @@ autoplay=true
             </menu>
 
             <img width=200 height=200 src="http://ws.audioscrobbler.com/2.0/?method=artist.imageredirect&artist=Radiohead&autocorrect=1&size=largesquare&api_key=a81521f42db5b48e3a474f30d1c9814d"></a></div>
-    <div id="details" rel="tooltip" title="Karma Police<br/>Radiohead">
-        <h1 title="Karma Police"><a href='http://toma.hk/?artist=Radiohead&title=Karma Police' target="_BLANK">Karma Police</a></h1>
-        <h2 title="Radiohead"><a href='http://toma.hk/artist/Radiohead' target="_blank">Radiohead</a></h2>
+    <div id="details" rel="tooltip">
+        <h1 id="track_title">Karma Police</h1>
+        <h2 id="track_artist">Radiohead</h2>
     </div>
    
                 <ul id="singleResultsList"></ul>
@@ -117,16 +103,38 @@ autoplay=true
         <script type="text/javascript" src="http://toma.hk/js/results.js" ></script>
 
         <script type="text/javascript">
+        
+        
+            function getQueryVariable(variable) {
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i=0;i<vars.length;i++) {
+                  var pair = vars[i].split("=");
+                  if (pair[0] == variable) {
+                    return decodeURIComponent(pair[1]);
+                  }
+                }
+                return '';
+            }
+            
+            var autoplay = getQueryVariable('autoplay');
+            var track_artist = getQueryVariable('artist');
+            var track_title = getQueryVariable('title');
+        
             $(document).ready(function() {
                 qid = Tomahk.search({
-                    artist: 'Radiohead',
+                    artist: track_artist,
                     album: '',
-                    title: 'Karma Police'
+                    title: track_title
                 });
-            })
+                
+                $('#track_title').text(track_title);
+                $('#track_artist').text(track_artist);
+            });
+            
 
-            Tomahk.setProtocolUrl('tomahawk://open/track/?artist=Radiohead&title=Karma+Police');
-            Tomahk.currentUrl = 'http://toma.hk/embed.php?artist=Radiohead&title=Karma%20Police&autoplay=true&disabledResolvers=';
+            Tomahk.setProtocolUrl('tomahawk://open/track/?artist=' + track_artist + '&title=' + track_title);
+            Tomahk.currentUrl = 'http://toma.hk/embed.php?artist=' + track_artist + '&title=' + track_title + '&autoplay=' + autoplay + '&disabledResolvers=';
         
             
         </script>

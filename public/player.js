@@ -320,8 +320,6 @@ var player = {
                 player.checkTriggered = true;
             }
         }
-
-    
     }
 }
 
