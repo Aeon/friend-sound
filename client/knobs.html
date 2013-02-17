@@ -1,7 +1,7 @@
 <template name="knobs">
 <div>
   {{#each knobs}}
-  {{category}}
+  <label for="{{category}}">{{category}}</label>
   <input id="{{category}}"
          name="{{category}}"
          type="range"
