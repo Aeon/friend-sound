@@ -9,8 +9,7 @@ Template.playlist.songs = function () {
 Template.players.show = true;
 
 Template.players.players = function () {
-  // return Players.find({_id: {$ne: Session.get('player_id')}});
-  return Players.find().fetch();
+  return Players.find({_id: {$ne: Session.get('player_id')}}).fetch();
 };
 
 var player = function () {
