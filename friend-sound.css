@@ -1,1 +1,32 @@
 /* CSS declarations go here */
+
+#moodknobs {
+  width: 1260px;
+  margin: auto;
+}
+#moodknobs label {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 150%;
+  text-align: center;
+}
+.knobby {
+  display: inline-block;
+  width: 200px;
+}
+
+#playlist {
+  float:right;
+  margin-right: 200px;
+}
+
+#now-playing {
+  float: left;
+  margin-left: 200px;
+}
+
+#tomahawk-player {
+  clear: left;
+  float: left;
+  margin-left: 200px;
+}

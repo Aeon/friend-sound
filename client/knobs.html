@@ -1,6 +1,7 @@
 <template name="knobs">
-<div>
+<div id="moodknobs">
   {{#each knobs}}
+  <div class="knobby">
   <label for="{{category}}">{{category}}</label>
   <input id="{{category}}"
          name="{{category}}"
@@ -9,8 +10,10 @@
          class="dial"
          data-step="{{step}}"
          data-min="{{min}}" data-max="{{max}}"
+         data-thickness=".2"
+         data-cursor="true"
           />
-  <br />
+  </div>
   {{/each}}
 </div>
 </template>
