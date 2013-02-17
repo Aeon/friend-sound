@@ -1,15 +1,12 @@
 
 Meteor.startup ->
-  for category, value in {
-    'tempo': 90
-    'loudness': -10
-    'danceability': 0.7
-    'energy': 0.5
-    'familiarity': 0.7
-    'hotttnesss': 0.7
-  }
-    unless Knobs.findOne(category:category)?
-      Knobs.insert category:category, value:value
+  if Knobs.find().count() == 0
+    Knobs.insert category:"tempo", value:90, defaultValue: 90, step:1, min:40 , max:260
+    Knobs.insert category:"loudness", value:-10, defaultValue: -10 , step:1, min:-30 , max:20
+    Knobs.insert category:"familiarity", value:0.9, defaultValue: 0.9, step:0.01, min:0 , max:1
+    Knobs.insert category:"hotttnesss", value:0.8, defaultValue: 0.8, step:0.01, min:0 , max:1
+    Knobs.insert category:"energy", value:0.8, defaultValue: 0.8, step:0.01, min:0 , max:1
+    Knobs.insert category:"danceability", value:0.8, defaultValue: 0.8, step:0.01, min:0 , max:1
 
   Players.remove({})
 
