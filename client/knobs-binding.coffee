@@ -1,37 +1,5 @@
 knobs = {}
 
-#createKnobCSS = (knob,id)->
-  #$input = $(knob.element)
-  #$container = $('<div class="container '+ id + '">')
-  #$body      = $('<div class="ui-knob ui-shadow '+ id + '">')
-  #$indicator = $('<div class="ui-indicator '+ id + '">')
-
-  #$container.append($body)
-  #$container.append($indicator)
-
-  ## $input.hide();
-  #$container.insertBefore($input)
-  #$container.append($input)
-
-  ##center knob in container
-  #$body.css
-    #"margin-top": $body.outerHeight()/2
-    #"margin-left": -($body.outerWidth()/2)
-  #setupKnob(knob, $container[0])
-
-#drawKnobCSS = (knob, indicator)->
-  #$indicator = $(knob.element).siblings('.ui-indicator')
-  #$indicator.css
-    #left: indicator.x - $indicator.outerWidth()/2
-    #top:  indicator.y - $indicator.outerHeight()/2
-
-  #rotateText = 'rotate('+(-indicator.angle)+'deg)'
-  #$indicator.css
-    #'transform': rotateText
-    #'-webkit-transform': rotateText
-    #'-moz-transform': rotateText
-    #'-o-transform': rotateText
-
 updateValue = (category, value)->
   clearTimeout(updateValue.knobTimeout) if updateValue.knobTimeout
   updateValue.knobTimeout = setTimeout ->
