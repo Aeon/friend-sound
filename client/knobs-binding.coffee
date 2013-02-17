@@ -30,10 +30,20 @@ drawKnobCSS = (knob, indicator)->
     '-moz-transform': rotateText
     '-o-transform': rotateText
 
+updateValue = (category, value)->
+  clearTimeout(updateValue.knobTimeout) if updateValue.knobTimeout
+  updateValue.knobTimeout = setTimeout ->
+    knob = Knobs.findOne {category: category}
+    console.error "sending value", value
+    Knobs.update({category: category}, {$set: {value: value}})
+  , 500
+updateValue.knobTimeout = null
+
 Template.knobs.rendered = ->
   positionKnob = new Knob document.getElementById('position'), (knob, indicator)->
     drawKnobCSS(knob, indicator)
     console.log knob.element.value
+    updateValue "hotttness", knob.element.value
   createKnobCSS positionKnob, 'position'
   
   rotateKnob = new Knob document.getElementById('rotate'), (knob, indicator)->
