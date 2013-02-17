@@ -3,18 +3,21 @@
 </head>
 
 <body>
+  {{> knobs }}
   {{> playlist }}
   {{> players }}
   {{> audioplayer }}
 </body>
 
 <template name="playlist">
+<div>
   {{current_song}}
   <div id="playlist">
     {{#each songs}}
       {{> song }}
     {{/each}}
   </div>
+</div>
 </template>
 
 <template name="audioplayer">
@@ -43,4 +46,8 @@
       {{/if}}
     </div>
   </div>
+</template>
+
+<template name="song">
+
 </template>

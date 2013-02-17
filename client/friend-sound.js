@@ -7,18 +7,22 @@ Template.audioplayer.title = function () {
 };
 
 Template.playlist.songs = function () {
-  return Playlist.find();
+  return Playlist.find().fetch();
 };
 
 Template.players.show = true;
 
 Template.players.players = function () {
   // return Players.find({_id: {$ne: Session.get('player_id')}});
-  return Players.find();
+  return Players.find().fetch();
 };
 
 var player = function () {
   return Players.findOne(Session.get('player_id'));
+};
+
+Template.playlist.current_song = function () {
+  return "Black Steel";
 };
 
 //////
@@ -57,8 +61,8 @@ Meteor.startup(function () {
   // XXX this is not a great idiom. meteor server does not yet have a
   // way to expose connection status to user code. Once it does, this
   // code can go away.
-  Meteor.setInterval(function() {
-    if (Meteor.status().connected)
-      Meteor.call('keepalive', Session.get('player_id'));
-  }, 20*1000);
+  //Meteor.setInterval(function() {
+    //if (Meteor.status().connected)
+      //Meteor.call('keepalive', Session.get('player_id'));
+  //}, 20*1000);
 });
