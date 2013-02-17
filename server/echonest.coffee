@@ -53,10 +53,10 @@ getEchonestParams = () ->
   energy = getValue 'energy'
   params =
     api_key: 'BOLND4XS0ULGFU0YV'
-    min_tempo: tempo - 20
-    max_tempo: tempo + 20
-    min_loudness: loudness - 10
-    max_loudness: loudness + 10
+    min_tempo: tempo - 30
+    max_tempo: tempo + 30
+    min_loudness: loudness - 20
+    max_loudness: loudness + 20
     artist_min_familiarity: familiarity - 0.1
     artist_max_familiarity: familiarity + 0.1
     song_min_hotttnesss: hotttnesss - 0.1
@@ -93,16 +93,17 @@ Meteor.startup ->
           console.log "Data:", result.data
           console.log "Songs:", result.data.response.songs
           for s in result.data.response.songs
-            song.song_id = s.id
-            song.title = s.title
-            song.artist_id = s.artist_id
-            song.artist_name = s.artist_name
-            song.tempo = s.audio_summary.tempo
-            song.loudness = s.audio_summary.loudness
-            song.danceability = s.audio_summary.tempo
-            song.energy = s.audio_summary.energy
-            song.hotttnesss = s.song_hotttnesss
-            song.familiarity = s.artist_familiarity
+            song =
+              song_id : s.id
+              title : s.title
+              artist_id : s.artist_id
+              artist_name : s.artist_name
+              tempo : s.audio_summary.tempo
+              loudness : s.audio_summary.loudness
+              danceability : s.audio_summary.tempo
+              energy : s.audio_summary.energy
+              hotttnesss : s.song_hotttnesss
+              familiarity : s.artist_familiarity
             Playlist.insert song
 
             
