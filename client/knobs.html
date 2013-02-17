@@ -4,10 +4,11 @@
   <label for="{{category}}">{{category}}</label>
   <input id="{{category}}"
          name="{{category}}"
-         type="range"
+         type="text"
          value="{{defaultValue}}"
-         step="{{step}}"
-         min="{{min}}" max="{{max}}"
+         class="dial"
+         data-step="{{step}}"
+         data-min="{{min}}" data-max="{{max}}"
           />
   <br />
   {{/each}}
