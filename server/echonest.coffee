@@ -52,7 +52,7 @@ getEchonestParams = () ->
     min_tempo: Math.max(values.tempo - 20, 0)
     max_tempo: Math.min(values.tempo + 20, 300)
     min_loudness: Math.max(values.loudness - 20, -100)
-    max_loudness: Math.min(values.loudness + 20, 100)
+    max_loudness: Math.min(values.loudness + 20, 0)
     artist_min_familiarity: Math.max(values.familiarity - 0.1, 0)
     artist_max_familiarity: Math.min(values.familiarity + 0.1, 1)
     song_min_hotttnesss: Math.max(values.hotttnesss - 0.1, 0)
@@ -63,8 +63,6 @@ getEchonestParams = () ->
     max_energy: Math.min(values.energy + 0.1, 1)
     bucket: ['audio_summary', 'song_hotttnesss', 'artist_familiarity']
     results: 40
-  if params.max_loudness > 0
-    params.max_loudness = 0
   if params.song_min_hotttnesss > 0.5 
     params.song_min_hotttnesss = 0.5
   params
@@ -121,9 +119,3 @@ Meteor.startup ->
               hotttnesss : s.song_hotttnesss
               familiarity : s.artist_familiarity
             Playlist.insert song
-
-            
-
-
-
-
