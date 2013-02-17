@@ -25,13 +25,11 @@ Meteor.startup(function () {
   //
   // check for a pre-existing player, and if it exists, make sure the server still
   // knows about us.
-  /*
   var player_id = Session.get('player_id');
   if (!player_id) {
     player_id = Players.insert({name: smurfs[Math.floor(Math.random() * smurfs.length)], idle: false});
     Session.set('player_id', player_id);
   }
-  */
 
   getPlayerConfig = function() {
     return {
