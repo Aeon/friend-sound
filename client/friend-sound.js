@@ -51,10 +51,6 @@ Meteor.startup(function () {
         onended: function() {
           console.log(track.connection+":\n  Song ended: "+track.artist+" - "+track.title);
           CurrentSong.remove({});
-          next_song = Playlist.findOne();
-          CurrentSong.insert(next_song);
-          Playlist.remove(next_song._id);
-          markSongPlayed(next_song);
         },
         onplayable: function() {
           console.log(track.connection+":\n  playable");
@@ -81,6 +77,16 @@ console.log('setting up autorun');
     if (!!current_song) {
       track = window.tomahkAPI.Track(current_song.title, current_song.artist_name, getPlayerConfig());
       $('#tomahawk-player').html(track.render());
+    }
+  });
+
+  Meteor.autorun(function() {
+    if (CurrentSong.find().count() == 0) {
+      next_song = Playlist.findOne();
+      if (!next_song) return;
+      CurrentSong.insert(next_song);
+      Playlist.remove(next_song._id);
+      markSongPlayed(next_song);
     }
   });
 
