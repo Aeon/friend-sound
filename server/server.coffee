@@ -10,6 +10,8 @@ Meteor.startup ->
 
   Players.remove({})
 
+  CurrentSong.remove({})
+
   CurrentSong.insert {
     song_id       : "SOHJOLH12A6310DFE5",
     duration      : 261.62667,
