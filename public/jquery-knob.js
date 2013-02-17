@@ -361,7 +361,7 @@
         };
 
         this._validate = function(v) {
-            return (~~ (((v < 0) ? -0.5 : 0.5) + (v/this.o.step))) * this.o.step;
+            return (Math.floor(((v < 0) ? -0.5 : 0.5) + (v/this.o.step))) * this.o.step;
         };
 
         // Abstract methods
@@ -441,8 +441,13 @@
                 a += this.PI2;
             }
 
-            ret = ~~ (0.5 + (a * (this.o.max - this.o.min) / this.angleArc))
-                    + this.o.min;
+            ret = (a * (this.o.max - this.o.min) / this.angleArc) + this.o.min;
+            
+            if(ret > 1) {
+              ret = ~~ (0.5 + ret);
+            } else {
+              ret = Math.floor(ret * 100) / 100;
+            }
 
             this.o.stopper
             && (ret = max(min(ret, this.o.max), this.o.min));
@@ -458,7 +463,7 @@
                             var ori = e.originalEvent
                                 ,deltaX = ori.detail || ori.wheelDeltaX
                                 ,deltaY = ori.detail || ori.wheelDeltaY
-                                ,v = parseInt(s.$.val()) + (deltaX>0 || deltaY>0 ? s.o.step : deltaX<0 || deltaY<0 ? -s.o.step : 0);
+                                ,v = (Math.round(parseFloat(s.$.val()) * 100) / 100) + (deltaX>0 || deltaY>0 ? s.o.step : deltaX<0 || deltaY<0 ? -s.o.step : 0);
 
                             if (
                                 s.cH
