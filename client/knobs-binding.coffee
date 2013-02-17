@@ -17,5 +17,7 @@ Meteor.startup ->
   Meteor.autorun ->
     for knob in Knobs.find().fetch()
       if $("##{knob.category}") and $("##{knob.category}").val() != ""+knob.value
-        $("##{knob.category}").val(knob.value);
+        $("##{knob.category}")
+            .val(knob.value)
+            .trigger('change');
         console.log "Setting value", knob.category, "from ", knob.value, " to ", $("##{knob.category}").val(), knob.value == $("##{knob.category}").val()
