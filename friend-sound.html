@@ -27,7 +27,7 @@
 <template name="audioplayer">
   <div id="tomahawk-player">
     {{#if current_song}}
-      <iframe src="http://toma.hk/embed.php?artist={{current_song.artist_name}}&title={{current_song.title}}&autoplay=false&disabledResolvers=" width="200" scrolling="no" height="200" frameborder="0" allowtransparency="true" ></iframe>
+      <iframe src="/embed.html?artist={{current_song.artist_name}}&title={{current_song.title}}&autoplay=true&disabledResolvers=" width="200" scrolling="no" height="200" frameborder="0" allowtransparency="true" ></iframe>
     {{/if}}
   </div>
 </template>
