@@ -41,6 +41,20 @@ hasSongPlayed = (song) ->
 ###
 Playlist = new Meteor.Collection 'playlist'
 
+### CurrentSong:
+# song_id
+# title
+# artist_id
+# artist_name
+# tempo
+# loudness
+# danceability
+# energy
+# familiarity
+# hotttnesss
+###
+CurrentSong = new Meteor.Collection 'current_song'
+
 ###
 # Players:
 #

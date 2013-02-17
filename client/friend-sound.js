@@ -1,14 +1,14 @@
-Template.audioplayer.artist = function () {
-  return "Tricky";
-};
-
-Template.audioplayer.title = function () {
-  return "Black Steel";
+Template.audioplayer.current_song = function () {
+  return CurrentSong.findOne();
 };
 
 Template.playlist.songs = function () {
   return Playlist.find();
 };
+
+Template.playlist.current_song = function() {
+  return CurrentSong.findOne();
+}
 
 Template.players.show = true;
 

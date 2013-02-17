@@ -9,7 +9,11 @@
 </body>
 
 <template name="playlist">
-  {{current_song}}
+  <div id="now-playing">
+    {{#if current_song}}
+      {{current_song.name}} by {{current_song.artist_name}}
+    {{/if}}
+  </div>
   <div id="playlist">
     {{#each songs}}
       {{> song }}
@@ -19,7 +23,9 @@
 
 <template name="audioplayer">
   <div id="tomahawk-player">
-    <iframe src="http://toma.hk/embed.php?artist={{artist}}&title={{title}}&autoplay=false&disabledResolvers=" width="200" scrolling="no" height="200" frameborder="0" allowtransparency="true" ></iframe>
+    {{#if current_song}}
+      <iframe src="http://toma.hk/embed.php?artist={{current_song.artist_name}}&title={{current_song.name}}&autoplay=false&disabledResolvers=" width="200" scrolling="no" height="200" frameborder="0" allowtransparency="true" ></iframe>
+    {{/if}}
   </div>
 </template>
 
