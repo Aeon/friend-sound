@@ -1,10 +1,6 @@
-Template.audioplayer.artist = function () {
-  return "Tricky";
-};
-
-Template.audioplayer.title = function () {
-  return "Black Steel";
-};
+Handlebars.registerHelper("current_song", function () {
+  return CurrentSong.findOne();
+});
 
 Template.playlist.songs = function () {
   return Playlist.find().fetch();
