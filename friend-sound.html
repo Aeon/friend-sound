@@ -12,11 +12,13 @@
 <template name="playlist">
 <div>
   <div id="now-playing">
+    <h2>Now Playing</h2>
     {{#if current_song}}
-      {{current_song.title}} by {{current_song.artist_name}}
+      {{> song current_song}}
     {{/if}}
   </div>
   <div id="playlist">
+    <h2>Coming Next</h2>
     {{#each songs}}
       {{> song }}
     {{/each}}
@@ -55,5 +57,7 @@
 </template>
 
 <template name="song">
-
+  <div>
+    <strong>{{title}}</strong> by <strong>{{artist_name}}</strong>
+  </div>
 </template>
