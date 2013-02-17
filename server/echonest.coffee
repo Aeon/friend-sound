@@ -8,6 +8,7 @@ Response:
     "response": {
         "songs": [
             {
+                "artist_familiarity": 0.919746, 
                 "artist_id": "ARH6W4X1187B99274F", 
                 "artist_name": "Radiohead", 
                 "audio_summary": {
@@ -25,6 +26,7 @@ Response:
                     "time_signature": 4
                 }, 
                 "id": "SOHJOLH12A6310DFE5", 
+                "song_hotttnesss": 0.838239,
                 "title": "Karma Police"
             }
         ], 
