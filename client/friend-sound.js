@@ -37,9 +37,10 @@ Meteor.startup(function () {
     return {
       width: 400,
       height: 300,
+      autoplay: 1,
       disabledResolvers: [
-        "Youtube",
         "Rdio",
+        "SpotifyMetadata",
         "Deezer"
         // options: "SoundCloud", "Officialfm", "Lastfm", "Jamendo", "Youtube", "Rdio", "SpotifyMetadata", "Deezer", "Exfm"
       ],
@@ -52,6 +53,8 @@ Meteor.startup(function () {
           CurrentSong.remove({});
           next_song = Playlist.findOne();
           CurrentSong.insert(next_song);
+          Playlist.remove(next_song._id);
+          markSongPlayed(next_song);
         },
         onplayable: function() {
           console.log(track.connection+":\n  playable");
@@ -65,7 +68,7 @@ Meteor.startup(function () {
           currentTime = parseInt(currentTime);
           duration = parseInt(duration);
 
-          console.log(track.connection+":\n  Time update: "+currentTime + " "+duration);
+          //console.log(track.connection+":\n  Time update: "+currentTime + " "+duration);
         }
       }
     };
@@ -77,7 +80,7 @@ console.log('setting up autorun');
     console.log('autobots engage');
     if (!!current_song) {
       track = window.tomahkAPI.Track(current_song.title, current_song.artist_name, getPlayerConfig());
-      $('#tomahawk-player').append(track.render());
+      $('#tomahawk-player').html(track.render());
     }
   });
 
