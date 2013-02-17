@@ -1,10 +1,13 @@
 
 Meteor.startup ->
+
+  Knobs.remove({})
+
   if Knobs.find().count() == 0
-    Knobs.insert category:"tempo", value:90, defaultValue: 90, step:1, min:40 , max:260
-    Knobs.insert category:"loudness", value:-10, defaultValue: -10 , step:1, min:-30 , max:20
-    Knobs.insert category:"familiarity", value:0.9, defaultValue: 0.9, step:0.01, min:0 , max:1
-    Knobs.insert category:"hotttnesss", value:0.8, defaultValue: 0.8, step:0.01, min:0 , max:1
+    Knobs.insert category:"tempo", value:90, defaultValue: 90, step:10, min:40 , max:180
+    Knobs.insert category:"loudness", value:-10, defaultValue: -10 , step:1, min:-60 , max:0
+    Knobs.insert category:"familiarity", value:0.9, defaultValue: 0.5, step:0.01, min:0 , max:1
+    Knobs.insert category:"hotttnesss", value:0.2, defaultValue: 0.2, step:0.01, min:0 , max:0.8
     Knobs.insert category:"energy", value:0.8, defaultValue: 0.8, step:0.01, min:0 , max:1
     Knobs.insert category:"danceability", value:0.8, defaultValue: 0.8, step:0.01, min:0 , max:1
 
