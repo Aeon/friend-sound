@@ -73,7 +73,7 @@ makeQueryString = (params) ->
     unless values instanceof Array
       values = [values]
     for v in values
-      qs += "&#{name}=#{v}"
+      qs += "#{name}=#{v}&"
   return qs
 
 getKnobValues = ->

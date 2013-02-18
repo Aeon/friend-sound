@@ -6,7 +6,7 @@
 
     <link href='http://toma.hk/css/embed.css?v=1' media='all' rel='stylesheet'/>
 
-    <script type="text/javascript" src="/packages/jquery/jquery.js"></script>
+    <script type="text/javascript" src="http://toma.hk/js/jquery.min.js"></script>
     <script src="http://toma.hk/js/script.js.php" type="text/javascript"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
@@ -89,7 +89,7 @@
                 
             </menu>
 
-            <img width=200 height=200 src="http://ws.audioscrobbler.com/2.0/?method=artist.imageredirect&artist=Radiohead&autocorrect=1&size=largesquare&api_key=a81521f42db5b48e3a474f30d1c9814d"></a></div>
+            <img id="bg" width=200 height=200 src=""></a></div>
     <div id="details" rel="tooltip">
         <h1 id="track_title">Karma Police</h1>
         <h2 id="track_artist">Radiohead</h2>
@@ -130,6 +130,9 @@
                 
                 $('#track_title').text(track_title);
                 $('#track_artist').text(track_artist);
+                $('#bg').attr('src', 
+                  'http://ws.audioscrobbler.com/2.0/?method=artist.imageredirect&artist='+track_artist+'&autocorrect=1&size=largesquare&api_key=a81521f42db5b48e3a474f30d1c9814d'
+                );
             });
             
 

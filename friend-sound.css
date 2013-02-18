@@ -1,7 +1,8 @@
 /* CSS declarations go here */
 
 #moodknobs {
-  width: 1260px;
+  max-width: 1260px;
+  min-width: 660px;
   margin: auto;
 }
 #moodknobs label {
@@ -16,17 +17,23 @@
 }
 
 #playlist {
-  float:right;
-  margin-right: 200px;
+  clear: both;
+  width: 500px;
+  margin: auto;
 }
 
 #now-playing {
-  float: left;
-  margin-left: 200px;
+  clear: both;
+  width: 500px;
+  margin: auto;
 }
 
 #tomahawk-player {
-  clear: left;
-  float: left;
-  margin-left: 200px;
+  clear: both;
+  width: 500px;
+  margin: auto;
+}
+
+#players {
+  display: none;
 }

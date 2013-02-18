@@ -271,6 +271,7 @@
 
             // Mouse events listeners
             k.c.d
+                // TODO: release doesn't fire correctly with mouse click-and-drag
                 .bind("mousemove.k", mouseMove)
                 .bind(
                     // Escape key cancel current change

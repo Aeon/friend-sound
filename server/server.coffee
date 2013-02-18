@@ -18,9 +18,9 @@ Meteor.startup ->
   CurrentSong.insert {
     song_id       : "SOHJOLH12A6310DFE5",
     duration      : 261.62667,
-    title         : "Karma Police",
+    title         : "Zemfira (rmx)",
     artist_id     : "ARH6W4X1187B99274F",
-    artist_name   : "Radiohead",
+    artist_name   : "Pantomiman",
     tempo         : 74.924,
     loudness      : -9.174,
     danceability  : 0.440120887280722,

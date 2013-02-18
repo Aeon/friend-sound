@@ -39,7 +39,8 @@ Meteor.startup(function () {
       disabledResolvers: [
         "Rdio",
         "SpotifyMetadata",
-        "Deezer"
+        "Deezer",
+        "tomahawk"
         // options: "SoundCloud", "Officialfm", "Lastfm", "Jamendo", "Youtube", "Rdio", "SpotifyMetadata", "Deezer", "Exfm"
       ],
       handlers: {
